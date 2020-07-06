@@ -1,0 +1,618 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(EnvironmentConfig)" Condition="Exists('$(CoreXTConfigFile)')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{635C5BE2-DB56-4890-8151-E65D6208AC87}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Crystal_Report</RootNamespace>
+    <AssemblyName>Crystal_Report</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AxShockwaveFlashObjects, Version=1.0.0.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Dapper.2.0.30\lib\net461\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="fmPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fmPrint.Designer.cs">
+      <DependentUpon>fmPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Microsoft\Reporting\WinForms.cs" />
+    <Compile Include="OrderDetail.cs" />
+    <Compile Include="Orders.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="rptOrders.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptOrders.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <EmbeddedResource Include="fmPrint.resx">
+      <DependentUpon>fmPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report1.rdlc" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="rptOrders.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptOrders.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\DataSources\AxShockwaveFlashObjects.AxShockwaveFlash.datasource" />
+    <None Include="Properties\DataSources\AxShockwaveFlashObjects.AxShockwaveFlashEventMulticaster.datasource" />
+    <None Include="Properties\DataSources\AxShockwaveFlashObjects._IShockwaveFlashEvents_FlashCallEvent.datasource" />
+    <None Include="Properties\DataSources\AxShockwaveFlashObjects._IShockwaveFlashEvents_FlashCallEventHandler.datasource" />
+    <None Include="Properties\DataSources\AxShockwaveFlashObjects._IShockwaveFlashEvents_FSCommandEvent.datasource" />
+    <None Include="Properties\DataSources\AxShockwaveFlashObjects._IShockwaveFlashEvents_FSCommandEventHandler.datasource" />
+    <None Include="Properties\DataSources\AxShockwaveFlashObjects._IShockwaveFlashEvents_OnProgressEvent.datasource" />
+    <None Include="Properties\DataSources\AxShockwaveFlashObjects._IShockwaveFlashEvents_OnProgressEventHandler.datasource" />
+    <None Include="Properties\DataSources\AxShockwaveFlashObjects._IShockwaveFlashEvents_OnReadyStateChangeEvent.datasource" />
+    <None Include="Properties\DataSources\AxShockwaveFlashObjects._IShockwaveFlashEvents_OnReadyStateChangeEventHandler.datasource" />
+    <None Include="Properties\DataSources\CachedrptOrders.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.EMFServerMessageFactory.ServerMessageFactory.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.Area.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.AreaFormat.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.Areas.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.BlobFieldObject.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.BooleanFieldFormat.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.Border.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.BoxObject.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.ChartObject.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.CommonFieldFormat.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.CrossTabObject.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.CRPE.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.CrystalComplexTypeExpansionLevelsAttribute.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.Database.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.DatabaseFieldDefinition.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.DatabaseFieldDefinitions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.DatabaseTableFieldDefinitions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.DatabaseTableLinkFieldDefinitions+LinkFieldEnumerator.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.DatabaseTableLinkFieldDefinitions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.DataDefinition.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.DataSourceException.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.DateFieldFormat.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.DateTimeFieldFormat.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.DateTimeGroupOptions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.DetailAreaFormat.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.DrawingObject.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.EngineException.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.EngineExceptionUtils.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.EngineObjectBase.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.EPFPageOptions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.EventEnabledArgs.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.ExportException.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.FieldDefinition.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.FieldDefinitions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.FieldFormat.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.FieldHeadingObject.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.FieldMapping.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.FieldMappingEventArgs.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.FieldMappingEventHandler.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.FieldObject.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.FlashObject.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.FormatEngine.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.FormatPageEventArgs.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.FormatPageEventHandler.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.FormatSectionEventArgs.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.FormatSectionEventHandler.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.FormattingException.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.FormulaException.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.FormulaFieldDefinition.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.FormulaFieldDefinitions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.GraphicObject.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.Group.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.GroupAreaFormat.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.GroupNameFieldDefinition.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.GroupNameFieldDefinitions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.GroupOptions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.Groups.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.HistoryInfo.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.HistoryInfos.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.InternalConnectionInfo.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.InternalDataSourceConnections.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.InternalException.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.InvalidArgumentException.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.InvalidGroupException.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.LineObject.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.LoadSaveReportException.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.LogOnException.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.MapObject.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.Migration.PrintOptionsConverter.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.Migration.ReportSourceConverter.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.NoReportPartsException.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.NumericFieldFormat.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.ObjectFormat.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.OlapGridObject.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.OutOfLicenseException.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.PageFooterAreaFormat.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.ParameterFieldCurrentValueException.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.ParameterFieldDefinition.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.ParameterFieldDefinitions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.ParameterFieldException.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.PictureObject.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.PrintEditor.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.PrintException.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.PrintingConverter.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.PrintOptions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.ReportClass.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.ReportClosedException.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.ReportDefinition.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.ReportDocument.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.ReportObject.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.ReportObjectProperty.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.ReportObjects.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.ReportOptions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.ReportRequestStatus.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.RunningTotalFieldDefinition.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.RunningTotalFieldDefinitions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.SCRCollection+SCRCollectionEnumerator.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.SCRCollection.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.Section.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.SectionFormat.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.Sections.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.SortField.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.SortFields.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.SpecialVarFieldDefinition.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.SQLExpressionFieldDefinition.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.SQLExpressionFieldDefinitions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.SubreportException.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.SubreportObject.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.Subreports.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.SummaryFieldDefinition.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.SummaryFieldDefinitions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.SummaryInfo.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.Table.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.TableLink.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.TableLinks.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.Tables.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.TextObject.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.TimeFieldFormat.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.TopBottomNSortField.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.XmlExportFormat.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.Engine.XmlExportFormats.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.EPFPageObjectFactory.PageObjectFactory.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ETFTotallerTreeFactory.TotallerTreeFactory.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.SCREventLog.SCREventLog.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.SCREventLog.SCREventLogBase.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.SCREventLog.SCRPrintEngineEventLog.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.TSLV.TSLVHeaderData.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.TSLV.TSLVReader.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.Adornment.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.BlobFieldObjectInstance.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.BoxObjectInstance.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.ChartObjectInstance.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.DebugInfo.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.FieldFormat.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.FieldInstanceInGridObject.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.FieldObjectInstance.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.FlashObjectInstance.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.FontColor.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.GridLine.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.GridObjectInstance.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.GridRowColumnArea.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.GridRowColumnAreas.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.GridRowColumnLabel.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.ImageObjectInstance.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.IObjectInGrid.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.LineObjectInstance.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.LineObjectInstances.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.MapObjectInstance.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.NumericFieldInstanceInGridObject.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.NumericFieldObjectInstance.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.ObjectFormat.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.OlapGridObjectInstance.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.OlapGridSectionHeadInstance.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.OleObjectInstance.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.PageInfo.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.PageObject.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.PageObjects.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.Paragraph.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.ParagraphElement.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.ParagraphElements.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.Paragraphs.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.PlaceHolderObjectInstance.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.PrinterInfo.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.ReportObject.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.ReportObjectInstance.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.ReportObjectInstances.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.ReportPartBookmark.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.SectionInstance.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.SectionInstances.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.SectionOptionsInstance.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.ServerErrorMessage.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.ServerGroupPathMessage.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.ServerLogonInfoHeaderMessage.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.ServerMessage.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.ServerPageNumberMessage.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.ServerPromptInfoHeaderMessage.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.ServerVersionMessage.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.StringFieldFormat.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.SubreportObjectInstance.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.TabElement.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.TabStop.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.TabStops.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.TabUnit.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.TabUnits.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.TextElement.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.TextFieldInstanceInGridObject.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.TextFieldObjectInstance.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.TextInstanceInGridObject.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.TextLine.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.TextLines.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.TextObjectInstance.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.TotallerTree.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.TotallerTreeNode.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.TotallerTreeNodes.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.CrystalReports.ViewerObjectModel.ViewContext.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportAppServer.CrystalReportDataRowView.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportAppServer.CrystalReportDataView.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportAppServer.CrystalReportDataViewColumn.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportAppServer.CrystalReportDataViewColumns.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportAppServer.CrystalReportDataViewEnumerator.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportAppServer.DocumentUriEditor.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportAppServer.DocumentUriPropertyDescriptor.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportAppServer.EromPropertyBagConstants.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportAppServer.IReportID.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportAppServer.RASUtils.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportAppServer.ReportClientDocumentWrapper.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportAppServer.ReportID.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportAppServer.SubreportWrapper.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportSource.CachedFilenameReportSource.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportSource.CachedObjectReportSource.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportSource.CachedReport.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportSource.CachedReportConstants.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportSource.EnterpriseException.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportSource.EnterpriseLogonException.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportSource.EnterpriseSessionNotInitializedException.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportSource.EnterpriseXmlSerializationException.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportSource.EromReportSource.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportSource.EromReportSourceBase.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportSource.ICachedReport.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportSource.IReportSourceFactory.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportSource.LocalReportSourceBase.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportSource.NonHTTPCachedReportSource.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportSource.ParameterConverter+Separators.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportSource.ParameterConverter.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportSource.ProxyReportSource.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportSource.RemoteReportSource.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportSource.ReportSourceConverter.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportSource.ReportSourceEditor.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportSource.ReportSourceFactory.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportSource.ReportSourceFactoryBase.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportSource.ReportSourceTreeView.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportSource.ReportSourceTreeViewNode.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportSource.SimpleReportSourceEditor.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.ReportSource.StringObjectConverterHelper.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.AdornmentRender.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.CacheKeyConstants.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.CharacterSeparatedValuesFormatOptions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ConnectionInfo.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.CrystalReportClientScriptManager.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.CrystalReportsException.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.DataSourceConnections.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.DbConnectionAttributes.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.DiskFileDestinationOptions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.DrillDownRequestContext.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.DrillReportPartRequestContext.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.DummyPermissionAttribute.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.EditableRTFExportFormatOptions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.EmbeddedHTMLTag.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.EncryptionManager2.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.EnterpriseReport.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.EnterpriseReportManagerProxy.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ExcelDataOnlyFormatOptions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ExcelFormatOptions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ExchangeFolderDestinationOptions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ExportDestinationOptions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ExportFormatOptions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ExportOptions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ExportRequestContext.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.FindGroupContext.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.FindTextRequestContext.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.GroupLevelDataRequest.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.GroupTreeStyle.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.HTMLFormatOptions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ICacheKeyBuilder.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.IConnectionInfo.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.Interop.CrystalFileDialog.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.Interop.CrystalOpenFileDialog.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.IParameter.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.IParameterDiscreteValue.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.IParameterField.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.IParameterRangeValue.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.IParameters.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.IParameterValue.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.IParameterValues.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.IReportComponent.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.IReportSource.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.IReportSourceRowsetProvider.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.Json.IJsonString.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.Json.JsonArray.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.Json.JsonConnectionInfo.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.Json.JsonFormatOptions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.Json.JsonObject.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.Json.JsonStringer.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.Json.JsonTokener.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.Json.JsonWriter.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.Json.Null.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.LocaleManager.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.MicrosoftMailDestinationOptions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.NameValuePair.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.NameValuePair2.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.NameValuePairs.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.NameValuePairs2.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.OSVersion.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.PageMargins.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.PageRender.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.PageRequestContext.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ParameterDiscreteValue.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ParameterField.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ParameterFields.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ParameterRangeValue.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ParameterValue.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ParameterValues.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.PdfFormatOptions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.PdfRtfWordFormatOptions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.PrintingHelper.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.PrintLayoutSettings+PrintScaling.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.PrintLayoutSettings.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.PromptingFeedback.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.PromptingHTMLFeedback.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.PromptingHTMLRenderOption.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.PromptingOption.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.PromptingRenderOption.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.PromptingRequestContext.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.PromptingRequestInfo+EnumFetchFlags.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.PromptingRequestInfo.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.RemoteReportProxy.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.RemoteReportProxyBase.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ReportComponentBase.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ReportComponentFactory.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ReportInfo.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ReportingVersion.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ReportManagerRequest.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ReportManagerResponse.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ReportMappingHandler.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ReportPageRequestContext.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ReportPartID.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ReportPartIDs.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ReportPartIDsHolder.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ReportPartNavigationRequest.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ReportPartNavigationResult.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ReportPartNodeID.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ReportPartRequestContext.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ReportPartRequestContextBase.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ReportServiceVersionHeader.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ReportSourceBase.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ReportSourceBinaryConverter.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ReportStateInfo.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.RequestContext.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.RequestErrorInfo.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ResponseContext+EnumReturnType.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ResponseContext.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.RptBuildProviderHandler.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ServerFileReport.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ServerFileReportManagerProxy.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.SharedUtils+NonClientMetricsFontType.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.SharedUtils.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.SimpleStyle.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.SortInfo.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.SortInfos.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.SubreportContext.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.TableLogOnInfo.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.TableLogOnInfos.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.TextFormatOptions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.ToolbarStyle.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.TotallerNodeID.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.TotallerNodeIDs.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.TotallerRequestContext.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.TwipPoint.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.TwipRect.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.TwipSize.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Shared.XmlExportFormatOptions.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.AdornmentManager.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.AfterRenderContentEvent.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.AfterRenderContentEventHandler.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.AfterRenderEvent.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.AfterRenderEventHandler.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.AfterRenderObjectEvent.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.AfterRenderObjectEventHandler.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.BeforeRenderContentEvent.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.BeforeRenderContentEventHandler.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.BeforeRenderDrilldownEvent.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.BeforeRenderDrilldownEventHandler.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.BeforeRenderEvent.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.BeforeRenderEventHandler.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.BeforeRenderObjectEvent.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.BeforeRenderObjectEventHandler.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.BeforeRenderObjectTagEvent.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.BeforeRenderReportPartBookmarkEvent.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.BeforeRenderReportPartBookmarkEventHandler.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.CrystalHtmlTextWriter.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.DatabaseLogonRenderer.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.ExportDialogRender.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.FontColorManager.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.GroupTreeNodeRender.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.OnRenderScriptEvent.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.OnRenderScriptEventHandler.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.OnRenderStyleEvent.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.OnRenderStyleEventHandler.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.PageTableElement32.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.ParameterFieldsRenderer.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.ParameterValueParser.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.RenderDetailTagEvent.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.RenderEventArgsBase.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.ReportContentRender.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.ReportGroupTreeRender.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.ReportMobileRender.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.ReportPageRender.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.ReportPartsRender.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.ReportRenderBase.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.StyleManagerBase.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Web.HtmlReportRender.StyleSheetManager.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.BrowserBeforeNavigateEventArgs.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.BrowserBeforeNavigateEventHandler.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.BrowserNavigateCompleteEventHandler.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.BrowserNavigateEventArgs.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.CRToolStripTextBox.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.CrystalReportViewer.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.DocumentControl.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.DrillDownDocument.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.DrillEventArgs.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.DrillEventHandler.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.DrillSubreportEventArgs.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.DrillSubreportEventHandler.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.ExceptionEventArgs.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.ExceptionEventHandler.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.GroupNodeControl.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.ICrystalReportViewer.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.Internal.Win32.PRINTPAGERANGE.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.IWebBrowserEvents.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.MainReportDocument.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.NavigateEventArgs.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.NavigateEventHandler.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.ObjectInfo.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.PageControl.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.PageMouseEventArgs.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.PageMouseEventHandler.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.PageView.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.ParameterInfoControl.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.ParameterPromptControl.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.ParameterPromptResultEventArgs.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.ParameterPromptResultEventHandler.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.ProgressButton.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.RefreshEventHandler.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.ReportDocumentBase.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.ReportDocumentManager.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.ReportDocuments.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.ReportGroupTree.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.SearchEventArgs.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.SearchEventHandler.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.SelectedItem.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.TotallerTreeView.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.ViewerDocument.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.ViewerEventArgs.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.ViewerNumberEdit.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.ViewerSysDescriptionAttribute.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.WinformViewerRCI.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.ZoomEventArgs.datasource" />
+    <None Include="Properties\DataSources\CrystalDecisions.Windows.Forms.ZoomEventHandler.datasource" />
+    <None Include="Properties\DataSources\Crystal_Report.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\Crystal_Report.Properties.Settings.datasource" />
+    <None Include="Properties\DataSources\Dapper.CommandDefinition.datasource" />
+    <None Include="Properties\DataSources\Dapper.CustomPropertyTypeMap.datasource" />
+    <None Include="Properties\DataSources\Dapper.DbString.datasource" />
+    <None Include="Properties\DataSources\Dapper.DefaultTypeMap.datasource" />
+    <None Include="Properties\DataSources\Dapper.DynamicParameters.datasource" />
+    <None Include="Properties\DataSources\Dapper.ExplicitConstructorAttribute.datasource" />
+    <None Include="Properties\DataSources\Dapper.IWrappedDataReader.datasource" />
+    <None Include="Properties\DataSources\Dapper.SqlMapper+GridReader.datasource" />
+    <None Include="Properties\DataSources\Dapper.SqlMapper+ICustomQueryParameter.datasource" />
+    <None Include="Properties\DataSources\Dapper.SqlMapper+Identity.datasource" />
+    <None Include="Properties\DataSources\Dapper.SqlMapper+IDynamicParameters.datasource" />
+    <None Include="Properties\DataSources\Dapper.SqlMapper+IMemberMap.datasource" />
+    <None Include="Properties\DataSources\Dapper.SqlMapper+IParameterCallbacks.datasource" />
+    <None Include="Properties\DataSources\Dapper.SqlMapper+IParameterLookup.datasource" />
+    <None Include="Properties\DataSources\Dapper.SqlMapper+ITypeHandler.datasource" />
+    <None Include="Properties\DataSources\Dapper.SqlMapper+ITypeMap.datasource" />
+    <None Include="Properties\DataSources\Dapper.SqlMapper+Settings.datasource" />
+    <None Include="Properties\DataSources\Dapper.SqlMapper+StringTypeHandler`1.datasource" />
+    <None Include="Properties\DataSources\Dapper.SqlMapper+TypeHandlerCache`1.datasource" />
+    <None Include="Properties\DataSources\Dapper.SqlMapper+TypeHandler`1.datasource" />
+    <None Include="Properties\DataSources\Dapper.SqlMapper+UdtTypeHandler.datasource" />
+    <None Include="Properties\DataSources\Dapper.SqlMapper.datasource" />
+    <None Include="Properties\DataSources\Form1.datasource" />
+    <None Include="Properties\DataSources\Microsoft.Reporting.WinForms.datasource" />
+    <None Include="Properties\DataSources\OrderDetail.datasource" />
+    <None Include="Properties\DataSources\Orders.datasource" />
+    <None Include="Properties\DataSources\Orders1.datasource" />
+    <None Include="Properties\DataSources\Program.datasource" />
+    <None Include="Properties\DataSources\rptOrders.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+    <None Include="welcome.mht" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
